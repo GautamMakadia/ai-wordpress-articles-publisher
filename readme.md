@@ -5,6 +5,11 @@ cd artical-generator
 mkdir articles
 ```
 
+### Install Dependencies
+```sh
+pip install requests webbrowser markdown beautifulsoup4 google-genai dotenv
+```
+
 ### Create `.env` file to store the enviroment variables.
 
 ```sh
