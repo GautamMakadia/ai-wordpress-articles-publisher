@@ -3,7 +3,6 @@ import webbrowser
 import asyncio
 import markdown
 import os
-import json
 from bs4 import BeautifulSoup
 from google import genai
 from dotenv import load_dotenv
