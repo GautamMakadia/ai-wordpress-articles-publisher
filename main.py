@@ -115,7 +115,7 @@ def markdown_to_wp_html(md_text):
     html = markdown.markdown(md_text, extensions=['fenced_code'])
     soup = BeautifulSoup(html, 'html.parser')
     
-    for tag in soup.find_all(['h1', 'h2', 'h3', 'h4', '5']):
+    for tag in soup.find_all(['h1', 'h2', 'h3', 'h4', 'h5']):
         tag.name = 'h5'
         tag['class'] = tag.get('class', []) + ['wp-block-heading']
     
@@ -162,13 +162,6 @@ async def fetch_and_publish(title, access_token, site_id):
     print(f"Parsing the article form responce and converting to html ({title})...")
     content_html = markdown_to_wp_html(markdown_article)
 
-    file_name = sanitize_filename(new_title)
-    print(f"saving content to file. ({title}) --> ./articles/{file_name}")
-    with open("./articles/"+file_name, 'w') as f:
-        f.write(new_title)
-        f.write(content_html)
-
-
     print(f"Uploading to wordpress ({title}) ...")
     post_to_wordpress(site_id, new_title, content_html, access_token)
 
@@ -182,8 +175,12 @@ async def main():
     site_id = get_site_id(access_token)
 
     titles = [
-        #put your titles here with comma(,) seprated
+        "Monitoring Microservices with Prometheus and Grafana",
+        "Web Accessibility (a11y) Standards and Best Practices",
+        "Why DevOps Culture is Essential for Agile Teams",
+        "How to Build a Headless CMS with Strapi and Next.js",
     ]
+
 
     tasks = []
 
